@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -137,3 +137,14 @@ cython_debug/
 *.swp
 *.swo
 *~
+
+# Frontend / Node.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.turbo/
+frontend/coverage/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
