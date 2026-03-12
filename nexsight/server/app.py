@@ -16,8 +16,8 @@ app = FastAPI(title="NexSight", description="Real-time GPU Intelligence")
 # Connected WebSocket clients
 connected_clients: Set[WebSocket] = set()
 
-# Static files directory
-STATIC_DIR = Path(__file__).parent / "webui" / "static"
+# Static files directory (frontend builds to nexsight/webui/static/)
+STATIC_DIR = Path(__file__).parent.parent / "webui" / "static"
 
 
 @app.get("/")
@@ -97,4 +97,10 @@ async def websocket_endpoint(websocket: WebSocket):
 def run_server(host: str = "127.0.0.1", port: int = 9988):
     """Run the server with uvicorn."""
     import uvicorn
-    uvicorn.run(app, host=host, port=port, log_level="info")
+    uvicorn.run(
+        app,
+        host=host,
+        port=port,
+        log_level="info",
+        access_log=True,
+    )

@@ -21,9 +21,21 @@ def run(
     port: int = typer.Option(9988, "--port", "-p", help="Port to bind to"),
 ):
     """Start the NexSight web dashboard."""
-    console.print(f"\n🚀 Starting NexSight dashboard...", style="bold green")
-    console.print(f"   Host: {host}:{port}")
-    console.print(f"   Open: http://{host}:{port}\n", style="dim")
+    console.print(f"\n[bold green]🚀 NexSight Dashboard[/bold green]")
+    console.print(f"   [dim]Starting server on {host}:{port}...[/dim]\n")
+
+    # Show URL
+    if host == "0.0.0.0":
+        url = f"http://localhost:{port}"
+    else:
+        url = f"http://{host}:{port}"
+
+    console.print(f"   [cyan]Open:[/cyan] [bold white]{url}[/bold white]")
+    console.print(f"   [dim]Press Ctrl+C to stop[/dim]\n")
+
+    # Add a separator
+    console.print("=" * 50, style="dim")
+
     run_server(host=host, port=port)
 
 
@@ -104,7 +116,7 @@ def gpus(
 @app.command()
 def version():
     """Show version information."""
-    from .. import __version__
+    from . import __version__
     console.print(f"NexSight version {__version__}", style="bold green")
 
 
